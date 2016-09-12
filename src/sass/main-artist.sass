@@ -1,0 +1,39 @@
+.main-artist ~ span
+  color: green
+  margin: 1em 0 .5em
+  display: block
+
+
+.artist--main
+  width: 100%
+  text-align: center
+  font-size: 1.3em
+  h3
+    margin: .5em 0 1em
+
+
+.description
+  background: white
+  border-radius: .3em
+  padding: .6em
+  line-height: 1.6
+  font-size: 1em
+  width: 100%
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07)
+
+@media (min-width: 425px)
+  .artist--main
+    width: 400px
+    margin: 1em auto .5em !important
+    h3
+      font-size: 1.6em
+  .description
+    margin: 0 auto
+
+
+@media(min-width: 768px)
+  .main-artist
+    display: flex
+    .description
+      align-self: center
+      margin-left: 1em

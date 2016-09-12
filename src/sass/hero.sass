@@ -1,0 +1,67 @@
+.hero
+  background:
+    image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://hd.unsplash.com/photo-1453738773917-9c3eff1db985')
+  background-repeat: no-repeat
+  background-position: center
+  background-size: cover
+  color: white
+  text-align: center
+  height: 15em
+  font-family: 'Roboto', sans-serif
+  margin-bottom: .5em
+  h1
+    margin: 0
+    padding: 1.5em 0 0
+    font-size: 1.5em
+    font-weight: 300
+.welcome
+  margin: .5em 0 1em
+  h2
+    font-size: 1.2em
+    font-weight: 300
+    margin: 0
+    letter-spacing: .01em
+    padding: 0 .7em
+  .welcome__input
+    margin: 2em auto .5em
+    width: 85%
+    border: 1px solid
+    display: flex
+    input
+      // width: 90%
+      flex-grow: 1
+      color: #000
+      border: none
+      padding: .3em
+    i
+      padding: 0 .6em
+      align-self: center
+  .welcome__select
+    input:nth-child(2)
+      margin-left: 1em
+
+
+@media(min-width: 425px)
+  .hero
+    height: 19em !important
+    h1
+      font-size: 2em
+      padding-bottom: .5em
+  .welcome
+    width: 360px
+    margin: 0 auto
+
+@media(min-width: 768px)
+  .hero
+    height: 25em !important
+    h1
+      font-size: 3em
+  .welcome
+    width: auto
+    h2
+      font-size: 1.5em
+    &__input
+      width: 50% !important
+      margin-bottom: 1em !important
+      i
+        flex-grow: .05
