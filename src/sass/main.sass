@@ -6,24 +6,17 @@
 body
   background: #F4F4F4
 
+.app
+  min-height: 100%
+
 img
   max-width: 100%
 
-.container
-  width: 96%
-  margin: 0 auto
+main
+  min-height: 39vh
 
-@media(min-width: 426px)
-  .container
-    width: 90%
-
-@media(min-width: 960px)
-  .container
-    width: 68%
-    max-width: 870px
-    // border: 1px solid
-
-@import "hero"
-@import "artist"
-@import "country"
-@import "main-artist"
+@import 'container'
+@import 'hero'
+@import 'panel'
+@import 'sub-panel'
+@import 'footer'

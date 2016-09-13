@@ -1,0 +1,47 @@
+.main-form
+  &__input
+    display: flex
+    justify-content: center
+    width: 80%
+    margin: 0 auto
+    button[type="submit"]
+      background: #f77275
+      border: none
+      display: inline-block
+      width: 15%
+      i
+        vertical-align: middle
+    button:last-of-type
+      display: none
+    input[type="text"]
+      line-height: 1.43
+      padding: 5px
+      font-size: 1em
+      color: black
+      width: 85%
+  &__select
+    margin: 1em 0
+    &__item
+      display: inline-block
+      margin: 0 1em
+      label
+        margin-left: .5em
+        letter-spacing: .05em
+        font-weight: 300
+
+.hero
+  .main-form
+    margin-top: 2em
+
+@media (min-width: 768px)
+  .main-form
+    &__input
+      width: 50%
+      input[type="text"]
+        font-size: 1.1em
+      button:first-of-type
+        display: none
+      button:last-of-type
+        display: block
+    &__select
+      font-size: 1.1em

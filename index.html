@@ -3,67 +3,173 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400|Work+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="shortcut icon" href="./src/favicon.ico">
     <title>React App</title>
   </head>
   <body>
     <div id="root"></div>
-    <!-- <div class="app">
-      <div class="hero">
-        <h1>Music Explorer</h1>
-        <div class="welcome">
-          <h2>Search for an artist or country to get its most played artists!</h2>
-          <form class="welcome__input">
-            <input type="text" placeholder="How about blink-182 or France?">
-            <i class="ion-ios-search"></i>
-          </form>
-          <form class="welcome__select">
-            <input type="radio" name="type" value="Artist" checked>Artist
-            <input type="radio" name="type" value="Country"> Country
-          </form>
+      <div class="app">
+        <div class="hero">
+          <div class="hero__content">
+            <h1>Music Explorer</h1>
+            <h2>Get information about an artist or the most played ones in a specific country</h2>
+            <div class="main-form">
+              <form class="main-form__input">
+                <input type="text" placeholder="How about blink-182 or Australia?">
+                <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                <button type="submit">Search</button>
+              </form>
+              <form class="main-form__select">
+                <div class="main-form__select__item">
+                  <input type="radio" name="search" value="artist" id="select-artist" checked><label for="select-artist">Artist</label>
+                </div>
+                <div class="main-form__select__item">
+                  <input type="radio" name="search" value="country" id="select-country"><label for="select-country">Country</label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> <!--end of hero -->
+        <main>
+          <div class="container flex flex--column">
+            <div class="panel">
+              <div class="panel__photo">
+                <img src="https://lastfm-img2.akamaized.net/i/u/2ff8a1aeb1694d99b4a00e9e9d04ca6e.png" alt="">
+              </div>
+              <div class="panel__info">
+                <h3>Bring me the horizon</h3>
+                <p>Bring Me the Horizon are a British metalcore band from Sheffield, Yorkshire, who formed in 2004. Bring Me the Horizon consists of lead vocalist Oliver Sykes, lead guitarist Lee Malia, rhythm guitarist Jona Weinhofen, bassist Matt Kean and drummer Matt Nicholls. They are currently signed to Visible Noise Records in the UK, Epitaph Records in the US and to Shock Records in Australia. Their music has been said to be influenced diversely by grindcore</p>
+                <div class="panel__info__tags">
+                  Tags:
+                  <div class="tag">
+                    <span>deathcore</span>
+                  </div>
+                  <div class="tag">
+                    <span>metalcore</span>
+                  </div>
+                  <div class="tag">
+                    <span>hardcore</span>
+                  </div>
+                  <div class="tag">
+                    <span>screamo</span>
+                  </div>
+                  <div class="tag">
+                    <span>metal</span>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- end of panel -->
+            <div class="info">
+              <div class="album-list">
+                <span class="section">Top Albums: </span>
+                <div class="panels">
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/56f69b19d6a3477281710292fc11a6be.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>Count your last blessings</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/56f69b19d6a3477281710292fc11a6be.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>Count your last blessings</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/56f69b19d6a3477281710292fc11a6be.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>Count your last blessings</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/2fe42b9d17c843599e7cca822e31485e.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>There Is a Hell, Believe Me I've Seen It. There Is a Heaven, Let's Keep It a Secret</span>
+                  </div>
+                </div>
+                </div>
+              </div> <!-- end of album-list -->
+              <div class="album-list">
+                <span class="section">Similar Artists: </span>
+                <div class="panels">
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/56f69b19d6a3477281710292fc11a6be.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>Asking Alexandria</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/56f69b19d6a3477281710292fc11a6be.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>Architects</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/56f69b19d6a3477281710292fc11a6be.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>Of Mice & Men</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/2fe42b9d17c843599e7cca822e31485e.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>blessthefall</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/2fe42b9d17c843599e7cca822e31485e.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>blessthefall</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/2fe42b9d17c843599e7cca822e31485e.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>blessthefall</span>
+                  </div>
+                </div>
+                <div class="sub-panel">
+                  <div class="sub-panel__photo">
+                    <img src="https://lastfm-img2.akamaized.net/i/u/174s/2fe42b9d17c843599e7cca822e31485e.png" alt="">
+                  </div>
+                  <div class="sub-panel__name">
+                    <span>blessthefall</span>
+                  </div>
+                </div>
+                </div>
+              </div> <!-- end of album-list -->
+            </div>
 
-        </div>
+          </div> <!-- end of container -->
+        </main>
+        <footer>
+          <span>Made with &hearts; by Julian Betancourt</span>
+          <span>Powered by Last-Fm and Wikipedia</span>
+        </footer>
       </div>
-      <main>
-        <div class="container">
-          <div class="main-artist">
-            <div class="artist artist--main">
-              <h3>C</h3>
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="">
-            </div>
-          </div>
-
-          <div class="artist-list">
-            <div class="artist">
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="Blink-182">
-              <span>Blink-182</span>
-            </div>
-            <div class="artist">
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="Blink-182">
-              <span>Blink-182</span>
-            </div>
-            <div class="artist">
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="Blink-182">
-              <span>Blink-182</span>
-            </div>
-            <div class="artist">
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="Blink-182">
-              <span>Blink-182</span>
-            </div>
-            <div class="artist">
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="Blink-182">
-              <span>Blink-182</span>
-            </div>
-            <div class="artist">
-              <img src="https://lastfm-img2.akamaized.net/i/u/300x300/276cce288e344b6cab672ab4d531eb5a.png" alt="Blink-182">
-              <span>Blink-182</span>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>-->
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

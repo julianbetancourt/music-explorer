@@ -5,63 +5,40 @@
   background-position: center
   background-size: cover
   color: white
+  height: 300px
   text-align: center
-  height: 15em
-  font-family: 'Roboto', sans-serif
+  position: relative
   margin-bottom: .5em
+  &__content
+    position: absolute
+    bottom: 2em
+    margin: 0 auto
+    width: 100%
   h1
     margin: 0
-    padding: 1.5em 0 0
+    text-transform: uppercase
+    font-family: 'Work Sans', sans-serif
+    font-weight: 400
+    padding: 0
     font-size: 1.5em
-    font-weight: 300
-.welcome
-  margin: .5em 0 1em
   h2
-    font-size: 1.2em
+    font-family: 'Roboto', sans-serif
     font-weight: 300
-    margin: 0
-    letter-spacing: .01em
-    padding: 0 .7em
-  .welcome__input
-    margin: 2em auto .5em
-    width: 85%
-    border: 1px solid
-    display: flex
-    input
-      // width: 90%
-      flex-grow: 1
-      color: #000
-      border: none
-      padding: .3em
-    i
-      padding: 0 .6em
-      align-self: center
-  .welcome__select
-    input:nth-child(2)
-      margin-left: 1em
+    font-size: 1.1em
+    padding: 0 1em
 
 
-@media(min-width: 425px)
+@media (min-width: 768px)
   .hero
-    height: 19em !important
+    height: 370px
+    background-position: 0% 30%
+    &__content
+      bottom: 5em
     h1
       font-size: 2em
-      padding-bottom: .5em
-  .welcome
-    width: 360px
-    margin: 0 auto
-
-@media(min-width: 768px)
-  .hero
-    height: 25em !important
-    h1
-      font-size: 3em
-  .welcome
-    width: auto
     h2
-      font-size: 1.5em
-    &__input
-      width: 50% !important
-      margin-bottom: 1em !important
-      i
-        flex-grow: .05
+      font-size: 1.4em
+      letter-spacing: .03em
+
+
+@import 'main-form'
