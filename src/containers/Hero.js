@@ -4,10 +4,25 @@ import { connect } from 'react-redux';
 import { toggleFilter } from '../actions/asyncActions';
 
 class HeroRouter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: ''
+    }
+  }
+  handleInputChange(e) {
+    e.preventDefault();
+    this.setState({term: e.target.value})
+  }
   handleFilterChange(e) {
     if (e.currentTarget.value !== this.props.filter) {
       this.props.toggleFilter();
     }
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.router.replace('/search/' + this.state.term)
+    this.setState({term: ''})
   }
   render() {
     return (
@@ -16,8 +31,8 @@ class HeroRouter extends Component {
           <h1>Music Explorer</h1>
           <h2>Get information about an artist or the most played ones in a specific country</h2>
           <div className="main-form">
-            <form className="main-form__input">
-              <input type="text" placeholder="How about blink-182 or Australia?" />
+            <form className="main-form__input" onSubmit={this.handleSubmit.bind(this)}>
+              <input type="text" placeholder="How about blink-182 or Australia?" value={this.state.term} onChange={this.handleInputChange.bind(this)}/>
               <button type="submit"><i className="ion-ios-search-strong"></i></button>
               <button type="submit">Search</button>
             </form>

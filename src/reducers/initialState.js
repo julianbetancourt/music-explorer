@@ -1,6 +1,6 @@
 export default {
   filter: 'artist',
-  textInput: '',
+  url: '',
   searchArtists: [],
   artistProfile: {
     img: '',
