@@ -2,9 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
 import './sass/main.sass';
-//KEY e62624f493da5c6d7453f5e0be3d76d9
+import { Router, Route, browserHistory } from 'react-router';
 
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('root')
-// );
+import ArtistList from './containers/ArtistList';
+import ArtistProfile from './containers/ArtistProfile';
+import CountryProfile from './containers/CountryProfile';
+// //KEY e62624f493da5c6d7453f5e0be3d76d9
+
+
+
+
+ReactDOM.render(
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <Route path="/search/:term" component={ArtistList} />
+      <Route path="/artist/:artist" component={ArtistProfile} />
+      <Route path="/country/:country" component={CountryProfile} />
+    </Route>
+  </Router>,
+  document.getElementById('root')
+);
+
+
+
+
+
+
+
+//------------------------------------------------------------------
+// I need:
+//   / -> Description
+//   /search/:term ->
+//   /artist/:artist
+//   /country/Colombia
