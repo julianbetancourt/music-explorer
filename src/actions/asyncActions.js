@@ -22,3 +22,19 @@ export const getArtists = (term) => {
       })
   }
 }
+
+export const getArtistSuccess = (payload) => {
+  return {
+    type: types.GET_ARTIST_SUCCESS,
+    payload
+  }
+}
+
+export const getArtist = (artist) => {
+  return (dispatch, getState) => {
+    axios.get(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=e62624f493da5c6d7453f5e0be3d76d9&format=json`)
+      .then(res => {
+        dispatch(getArtistSuccess(res.data.artist))
+      })
+  }
+}
