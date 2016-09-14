@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 const searchArtists = (state = initialState.searchArtists, action) => {
   switch (action.type) {
-    case types.GET_SEARCH:
+    case types.GET_ARTISTS_SUCCESS:
       return action.artists;
     default:
       return state;

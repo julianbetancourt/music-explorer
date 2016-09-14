@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 import { connect } from 'react-redux';
-import { toggleFilter } from '../actions/asyncActions';
+import { toggleFilter, getArtists } from '../actions/asyncActions';
 
 class HeroRouter extends Component {
   constructor(props) {
@@ -22,13 +22,15 @@ class HeroRouter extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.router.replace('/search/' + this.state.term)
-    this.setState({term: ''})
+    this.props.getArtists(this.state.term);
+    this.setState({term: ''});
+
   }
   render() {
     return (
       <div className="hero">
         <div className="hero__content">
-          <h1>Music Explorer</h1>
+          <h1><Link to="/">Music Explorer</Link></h1>
           <h2>Get information about an artist or the most played ones in a specific country</h2>
           <div className="main-form">
             <form className="main-form__input" onSubmit={this.handleSubmit.bind(this)}>
@@ -53,13 +55,15 @@ class HeroRouter extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    filter: state.filter
+    filter: state.filter,
+    artists: state.searchArtists
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleFilter: () => dispatch(toggleFilter())
+    toggleFilter: () => dispatch(toggleFilter()),
+    getArtists: (term) => dispatch(getArtists(term))
   }
 }
 
