@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getArtists, getArtist } from '../actions/asyncActions'; //notice one is plurar and the other not
+import { getArtists, getArtist, getTopAlbums } from '../actions/asyncActions'; //notice one is plurar and the other not
 import SubPanel from '../components/SubPanel';
 // import { browserHistory } from 'react-router';
 
@@ -21,15 +21,17 @@ class ArtistList extends Component {
     if (e.target.className === 'sub-panel') {
       let secondHashIndex = e.target.getAttribute('href').lastIndexOf('/')
       clicked = e.target.getAttribute('href').slice(secondHashIndex+1);
-    } else if (e.target.textContent === this.props.params.term) {
-      clicked = this.props.params.term;
+    } else if (e.target.nodeName === 'SPAN') {
+      clicked = e.target.textContent;
     } else if (e.target.className === 'sub-panel__name') {
       clicked = e.target.querySelectorAll('span')[0].textContent;
     } else if (e.target.nodeName === 'IMG') {
       let secondHashIndex = e.target.parentNode.parentNode.getAttribute('href').lastIndexOf('/')
       clicked = e.target.parentNode.parentNode.getAttribute('href').slice(secondHashIndex+1);
     }
+    console.log(e.target);
     this.props.getArtist(clicked)
+    this.props.getTopAlbums(clicked)
   }
   render() {
     return (
@@ -54,7 +56,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getArtists: (term) => dispatch(getArtists(term)),
-    getArtist: (artist) => dispatch(getArtist(artist))
+    getArtist: (artist) => dispatch(getArtist(artist)),
+    getTopAlbums: (artist) => dispatch(getTopAlbums(artist))
   }
 }
 

@@ -38,3 +38,20 @@ export const getArtist = (artist) => {
       })
   }
 }
+
+export const getTopAlbumsSuccess = (payload) => {
+  return {
+    type: types.GET_TOP_ALBUMS_SUCCESS,
+    payload
+  }
+}
+
+
+export const getTopAlbums = (artist) => {
+  return (dispatch, getState) => {
+    axios.get(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${artist}&api_key=e62624f493da5c6d7453f5e0be3d76d9&format=json&limit=4`)
+      .then(res => {
+        dispatch(getTopAlbumsSuccess(res.data.topalbums))
+      })
+  }
+}

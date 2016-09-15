@@ -7,11 +7,17 @@ const artistProfile = (state = initialState.artistProfile, action) => {
       const payload = action.payload
       const image = payload.image[4][Object.keys(payload.image[4])[0]];
       return {
+        ...state,
         img: image,
         name: payload.name,
         description: payload.bio.summary,
         tags: payload.tags.tag,
         similar: payload.similar.artist
+      }
+    case types.GET_TOP_ALBUMS_SUCCESS:
+      return {
+        ...state,
+        topAlbums: action.payload.album
       }
     default:
       return state;
