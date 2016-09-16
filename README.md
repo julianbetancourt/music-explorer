@@ -10,7 +10,7 @@ Please don't hesitate to make pull requests. There's still a lot of improvement.
 4. Open http://localhost:3000
 
 ## Online
-You can see the project live at https://julianbetancourt.github.io/music-explorer
+You can see the project live at https://musicc-explorer.herokuapp.com/
 
 ## Main Technologies Used
 1. create-react-app (Webpack, Babel, React)
