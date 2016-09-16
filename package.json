@@ -75,6 +75,7 @@
   "eslintConfig": {
     "extends": "./config/eslint.js"
   },
+  "homepage": "http://julianbetancourt.github.io/music-explorer",
   "jest": {
     "moduleFileExtensions": [
       "jsx",
