@@ -3,13 +3,11 @@ import { combineReducers } from 'redux';
 import filter from './filter';
 import searchArtists from './searchArtists';
 import artistProfile from './artistProfile';
-import country from './country';
 
 const rootReducer = combineReducers({
   filter,
   searchArtists,
-  artistProfile,
-  country
+  artistProfile
 });
 
 export default rootReducer;

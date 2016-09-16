@@ -6,7 +6,6 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import ArtistList from './containers/ArtistList';
 import ArtistProfile from './containers/ArtistProfile';
-import CountryProfile from './containers/CountryProfile';
 // //KEY e62624f493da5c6d7453f5e0be3d76d9
 
 import { Provider } from 'react-redux';
@@ -21,7 +20,6 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <Route path="/search/:term" component={ArtistList} />
         <Route path="/artist/:artist" component={ArtistProfile} />
-        <Route path="/country/:country" component={CountryProfile} />
       </Route>
     </Router>
   </Provider>,

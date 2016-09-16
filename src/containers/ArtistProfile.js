@@ -13,30 +13,21 @@ const cutHtml = (str) => {
 }
 
 
-
-
-
 class ArtistRouter extends Component {
   componentDidMount() {
-    // console.log('param:' + this.props.params.artist);
-    // let mainPromise = new Promise(() => {
-    //   this.props.getArtist(this.props.params.artist);
-    // })
-    // mainPromise.then(() =>  {
-    //   this.props.getTopAlbums(this.props.params.artist)
-    // })
-
-    this.props.getArtist(this.props.params.artist);
-    this.props.getTopAlbums(this.props.params.artist);
-    this.props.getAlbumIds(this.props.params.artist);
-    // this.props.getTracks();
+    const { getArtist, getTopAlbums, getAlbumIds, params } = this.props
+    getArtist(params.artist);
+    getTopAlbums(params.artist);
+    getAlbumIds(params.artist);
   }
   componentWillUnmount() {
-    this.props.artist.tracks.forEach((track, i) => {
-      this.props.artist.tracks[i].audio.pause();
+    const { artist } = this.props;
+    artist.tracks.forEach((track, i) => {
+      artist.tracks[i].audio.pause();
     })
   }
   handleSubPanelClick(e) {
+    const { getArtist, getTopAlbums, getAlbumIds, artist } = this.props
     let clicked;
     if (e.target.className === 'sub-panel') {
       let secondHashIndex = e.target.getAttribute('href').lastIndexOf('/')
@@ -49,53 +40,49 @@ class ArtistRouter extends Component {
       let secondHashIndex = e.target.parentNode.parentNode.getAttribute('href').lastIndexOf('/')
       clicked = e.target.parentNode.parentNode.getAttribute('href').slice(secondHashIndex+1);
     }
-    console.log(e.target);
-    this.props.getArtist(clicked)
-    this.props.getTopAlbums(clicked)
-    this.props.getAlbumIds(clicked);
-    this.props.artist.tracks.forEach((track, i) => {
-      this.props.artist.tracks[i].audio.pause();
+    getArtist(clicked)
+    getTopAlbums(clicked)
+    getAlbumIds(clicked);
+    artist.tracks.forEach((track, i) => {
+      artist.tracks[i].audio.pause();
     })
-
   }
   handleSongClick(e) {
+    const { artist } = this.props;
     if (e.target.nodeName === 'IMG') {
-      const clicked = parseInt(e.target.parentNode.parentNode.getAttribute('data-n'));
+      const clicked = parseInt(e.target.parentNode.parentNode.getAttribute('data-n'), 10);
       const audios = e.target.parentNode.parentNode.parentNode.children;
-      this.props.artist.tracks.forEach((track, i) => {
+      artist.tracks.forEach((track, i) => {
         if (clicked === i) {
-          if (this.props.artist.tracks[clicked].audio.paused) {
-            this.props.artist.tracks[clicked].audio.play()
+          if (artist.tracks[clicked].audio.paused) {
+            artist.tracks[clicked].audio.play()
             audios[clicked].classList.add('playing');
-            console.log(audios[clicked]);
           } else {
-            this.props.artist.tracks[clicked].audio.pause()
+            artist.tracks[clicked].audio.pause()
             audios[clicked].classList.remove('playing');
           }
-
         } else {
-          this.props.artist.tracks[i].audio.pause();
+          artist.tracks[i].audio.pause();
           audios[i].classList.remove('playing');
-
         }
       })
-
     }
   }
   render() {
+    const { artist } = this.props
     return (
       <div className="artist-profile">
         <Panel
-          img={this.props.artist.img}
-          name={this.props.artist.name}
-          description={cutHtml(this.props.artist.description)}
-          tags={this.props.artist.tags}/>
+          img={artist.img}
+          name={artist.name}
+          description={cutHtml(artist.description)}
+          tags={artist.tags}/>
         <div className="info">
           <div className="album-list">
             <span className="section">Top Albums: </span>
             <div className="panels">
               {
-                this.props.artist.topAlbums.map((album, i) => {
+                artist.topAlbums.map((album, i) => {
                   const image = album.image[2][Object.keys(album.image[2])[0]];
                   return <SubPanel img={image} name={album.name} key={i} />
                 })
@@ -106,10 +93,12 @@ class ArtistRouter extends Component {
             <span className="section">Similar Artists: </span>
             <div className="panels">
               {
-                this.props.artist.similar.map((artist, i) => {
+                artist.similar.map((artist, i) => {
                   const image = artist.image[2][Object.keys(artist.image[2])[0]];
                   if (i < 4) {
                     return <SubPanel img={image} name={artist.name} key={i} onClick={this.handleSubPanelClick.bind(this)}/>
+                  } else {
+                    return null;
                   }
                 })
               }
@@ -119,8 +108,7 @@ class ArtistRouter extends Component {
             <span className="section">Popular Songs: </span>
             <div className="panels panels--songs">
               {
-                this.props.artist.tracks.map((track, i) => {
-
+                artist.tracks.map((track, i) => {
                   return <SubPanelSong name={track.trackName} key={i} onClick={this.handleSongClick.bind(this)} audio={i}/>;
                 })
               }

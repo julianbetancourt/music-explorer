@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getArtists, getArtist, getTopAlbums } from '../actions/asyncActions'; //notice one is plurar and the other not
 import SubPanel from '../components/SubPanel';
-// import { browserHistory } from 'react-router';
 
 class ArtistList extends Component {
   constructor(props) {
@@ -10,10 +9,8 @@ class ArtistList extends Component {
     this.state = {
       term: this.props.params.term
     }
-    this.initialRoute = this.props.params.term;
   }
   componentDidMount() {
-    console.log('artist list will mount!!');
     this.props.getArtists(this.props.params.term);
   }
   handleSubPanelClick(e) {

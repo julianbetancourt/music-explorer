@@ -9,46 +9,35 @@ class HeroRouter extends Component {
     this.state = {
       term: ''
     }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleInputChange(e) {
     e.preventDefault();
     this.setState({term: e.target.value})
   }
-  handleFilterChange(e) {
-    if (e.currentTarget.value !== this.props.filter) {
-      this.props.toggleFilter();
-    }
-  }
   handleSubmit(e) {
+    const { filter, router, getArtists } = this.props;
     e.preventDefault();
-    if (this.props.filter === 'artist') {
-      this.props.router.replace('/search/' + this.state.term)
+    if (filter === 'artist') {
+      router.replace('/search/' + this.state.term)
     } else {
-      this.props.router.replace('/' + this.props.filter + '/' + this.state.term)
+      router.replace('/' + filter + '/' + this.state.term)
     }
-    this.props.getArtists(this.state.term);
+    getArtists(this.state.term);
     this.setState({term: ''});
-
   }
   render() {
     return (
       <div className="hero">
         <div className="hero__content">
           <h1><Link to="/">Music Explorer</Link></h1>
-          <h2>Get information about an artist or the most played ones in a specific country</h2>
+          <h2>Type a singer or band and get information, similar artists and popular songs!</h2>
           <div className="main-form">
-            <form className="main-form__input" onSubmit={this.handleSubmit.bind(this)}>
-              <input type="text" placeholder="How about blink-182 or Australia?" value={this.state.term} onChange={this.handleInputChange.bind(this)}/>
+            <form className="main-form__input" onSubmit={this.handleSubmit}>
+              <input type="text" placeholder="How about Major Lazer?" value={this.state.term} onChange={this.handleInputChange}/>
               <button type="submit"><i className="ion-ios-search-strong"></i></button>
               <button type="submit">Search</button>
-            </form>
-            <form className="main-form__select">
-              <div className="main-form__select__item">
-                <input type="radio" name="search" value="artist" id="select-artist" checked={this.props.filter === 'artist'} onChange={this.handleFilterChange.bind(this)}/><label htmlFor="select-artist">Artist</label>
-              </div>
-              <div className="main-form__select__item">
-                <input type="radio" name="search" value="country" id="select-country" checked={this.props.filter === 'country'} onChange={this.handleFilterChange.bind(this)}/><label htmlFor="select-country">Country</label>
-              </div>
             </form>
           </div>
         </div>
