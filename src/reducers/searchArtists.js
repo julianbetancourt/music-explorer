@@ -10,4 +10,5 @@ const searchArtists = (state = initialState.searchArtists, action) => {
   }
 }
 
+
 export default searchArtists;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class CountryProfile extends Component {
   render() {
@@ -10,4 +11,6 @@ class CountryProfile extends Component {
   }
 }
 
-export default CountryProfile;
+
+
+export default connect()(CountryProfile);

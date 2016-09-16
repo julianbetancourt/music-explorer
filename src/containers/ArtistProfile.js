@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getArtist, getTopAlbums } from '../actions/asyncActions';
+import { getArtist, getTopAlbums, getAlbumIds, getTracks } from '../actions/asyncActions';
 import Panel from '../components/Panel';
 import SubPanel from '../components/SubPanel';
+import SubPanelSong from '../components/SubPanelSong';
+import { withRouter } from 'react-router';
 
 const cutHtml = (str) => {
   //takes a string whose final part is a row html link
@@ -14,11 +16,25 @@ const cutHtml = (str) => {
 
 
 
-class ArtistProfile extends Component {
+class ArtistRouter extends Component {
   componentDidMount() {
-    console.log('param:' + this.props.params.artist);
+    // console.log('param:' + this.props.params.artist);
+    // let mainPromise = new Promise(() => {
+    //   this.props.getArtist(this.props.params.artist);
+    // })
+    // mainPromise.then(() =>  {
+    //   this.props.getTopAlbums(this.props.params.artist)
+    // })
+
     this.props.getArtist(this.props.params.artist);
     this.props.getTopAlbums(this.props.params.artist);
+    this.props.getAlbumIds(this.props.params.artist);
+    // this.props.getTracks();
+  }
+  componentWillUnmount() {
+    this.props.artist.tracks.forEach((track, i) => {
+      this.props.artist.tracks[i].audio.pause();
+    })
   }
   handleSubPanelClick(e) {
     let clicked;
@@ -36,6 +52,35 @@ class ArtistProfile extends Component {
     console.log(e.target);
     this.props.getArtist(clicked)
     this.props.getTopAlbums(clicked)
+    this.props.getAlbumIds(clicked);
+    this.props.artist.tracks.forEach((track, i) => {
+      this.props.artist.tracks[i].audio.pause();
+    })
+
+  }
+  handleSongClick(e) {
+    if (e.target.nodeName === 'IMG') {
+      const clicked = parseInt(e.target.parentNode.parentNode.getAttribute('data-n'));
+      const audios = e.target.parentNode.parentNode.parentNode.children;
+      this.props.artist.tracks.forEach((track, i) => {
+        if (clicked === i) {
+          if (this.props.artist.tracks[clicked].audio.paused) {
+            this.props.artist.tracks[clicked].audio.play()
+            audios[clicked].classList.add('playing');
+            console.log(audios[clicked]);
+          } else {
+            this.props.artist.tracks[clicked].audio.pause()
+            audios[clicked].classList.remove('playing');
+          }
+
+        } else {
+          this.props.artist.tracks[i].audio.pause();
+          audios[i].classList.remove('playing');
+
+        }
+      })
+
+    }
   }
   render() {
     return (
@@ -70,6 +115,17 @@ class ArtistProfile extends Component {
               }
             </div>
           </div>
+          <div className="album-list">
+            <span className="section">Popular Songs: </span>
+            <div className="panels panels--songs">
+              {
+                this.props.artist.tracks.map((track, i) => {
+
+                  return <SubPanelSong name={track.trackName} key={i} onClick={this.handleSongClick.bind(this)} audio={i}/>;
+                })
+              }
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -79,7 +135,9 @@ class ArtistProfile extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getArtist: (artist) => dispatch(getArtist(artist)),
-    getTopAlbums: (artist) => dispatch(getTopAlbums(artist))
+    getTopAlbums: (artist) => dispatch(getTopAlbums(artist)),
+    getAlbumIds: (artist) => dispatch(getAlbumIds(artist)),
+    getTracks: () => dispatch(getTracks())
 
   }
 }
@@ -90,5 +148,6 @@ const mapStateToProps = (state) => {
   }
 }
 
+let ArtistProfile = withRouter(ArtistRouter);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistProfile);

@@ -21,7 +21,11 @@ class HeroRouter extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.router.replace('/search/' + this.state.term)
+    if (this.props.filter === 'artist') {
+      this.props.router.replace('/search/' + this.state.term)
+    } else {
+      this.props.router.replace('/' + this.props.filter + '/' + this.state.term)
+    }
     this.props.getArtists(this.state.term);
     this.setState({term: ''});
 

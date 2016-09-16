@@ -8,7 +8,8 @@ export default {
     description: '',
     tags: [],
     topAlbums: [],
-    similar: []
+    similar: [],
+    tracks: []
   },
   country: {
     description: '',
