@@ -30,7 +30,6 @@ const artistProfile = (state = initialState.artistProfile, action) => {
         topAlbums: action.payload.album
       }
     case types.GET_ALBUMIDS_SUCCESS:
-      console.log(track(action.payload));
       return {
         ...state,
         albumIds: track(action.payload),

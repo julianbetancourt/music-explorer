@@ -84,7 +84,7 @@ class ArtistRouter extends Component {
               {
                 artist.topAlbums.map((album, i) => {
                   const image = album.image[2][Object.keys(album.image[2])[0]];
-                  return <SubPanel img={image} name={album.name} key={i} />
+                  return <SubPanel img={image} name={album.name} key={i} isAlbum={true}/>
                 })
               }
             </div>

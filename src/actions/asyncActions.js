@@ -87,7 +87,6 @@ export const getTracksSuccess = (payload) => {
 export const getTracks = () => {
   return (dispatch, getState) => {
     const ids = getState().artistProfile.albumIds;
-    console.log(getState());
     ids.forEach((id) => {
       axios.get(`https://api.spotify.com/v1/albums/${id}`)
         .then((res) => dispatch(getTracksSuccess(res.data.tracks.items[0])))

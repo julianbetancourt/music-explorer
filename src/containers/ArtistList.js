@@ -26,7 +26,6 @@ class ArtistList extends Component {
       let secondHashIndex = e.target.parentNode.parentNode.getAttribute('href').lastIndexOf('/')
       clicked = e.target.parentNode.parentNode.getAttribute('href').slice(secondHashIndex+1);
     }
-    console.log(e.target);
     this.props.getArtist(clicked)
     this.props.getTopAlbums(clicked)
   }
