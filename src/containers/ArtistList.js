@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import { getArtists, getArtist, getTopAlbums } from '../actions/asyncActions'; //notice one is plural and the other not
 import SubPanel from '../components/SubPanel';
 
-class ArtistList extends Component {
+class ArtistListRouter extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      term: this.props.params.term
+
+  }
+  componentWillReceiveProps(nextProps) {
+    const { params, getArtists } = this.props;
+    if (params.term !== nextProps.params.term) {
+      getArtists(nextProps.params.term);
     }
   }
   componentDidMount() {
@@ -57,5 +61,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+let ArtistList = ArtistListRouter;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistList) ;
