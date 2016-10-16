@@ -1,7 +1,6 @@
 #Music Explorer App
 Type a singer or band and get information, similar artists and popular songs!
 
-Please don't hesitate to make pull requests. There's still a lot of improvement.
 
 ## Local Installation
 1. ```cd``` to the project's folder
@@ -10,7 +9,7 @@ Please don't hesitate to make pull requests. There's still a lot of improvement.
 4. Open http://localhost:3000
 
 ## Online
-You can see the project live at https://musicc-explorer.herokuapp.com/
+You can see the project live at http://music-explorer.getforge.io/ (Heroku isn't updating changes, so I had to look for another static hosting)
 
 ## Main Technologies Used
 1. create-react-app (Webpack, Babel, React)
