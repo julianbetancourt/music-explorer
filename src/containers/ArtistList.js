@@ -4,10 +4,7 @@ import { getArtists, getArtist, getTopAlbums } from '../actions/asyncActions'; /
 import SubPanel from '../components/SubPanel';
 
 class ArtistListRouter extends Component {
-  constructor(props) {
-    super(props);
 
-  }
   componentWillReceiveProps(nextProps) {
     const { params, getArtists } = this.props;
     if (params.term !== nextProps.params.term) {
