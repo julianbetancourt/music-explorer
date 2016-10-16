@@ -17,7 +17,7 @@ class HeroRouter extends Component {
     this.setState({term: e.target.value})
   }
   handleSubmit(e) {
-    const { filter, router } = this.props;
+    const { filter, router } = this.props; 
     e.preventDefault();
     if (filter === 'artist') {
       router.push('/search/' + this.state.term)
