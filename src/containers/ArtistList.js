@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getArtists, getArtist, getTopAlbums } from '../actions/asyncActions'; //notice one is plurar and the other not
+import { getArtists, getArtist, getTopAlbums } from '../actions/asyncActions'; //notice one is plural and the other not
 import SubPanel from '../components/SubPanel';
 
 class ArtistList extends Component {
@@ -56,5 +56,6 @@ const mapDispatchToProps = (dispatch) => {
     getTopAlbums: (artist) => dispatch(getTopAlbums(artist))
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistList) ;

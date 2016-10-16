@@ -20,6 +20,21 @@ class ArtistRouter extends Component {
     getTopAlbums(params.artist);
     getAlbumIds(params.artist);
   }
+  componentWillReceiveProps(nextProps) {
+    const { getArtist, getTopAlbums, getAlbumIds, params, artist } = this.props;
+    const currentArtist = params.artist;
+    const newArtist = nextProps.params.artist;
+
+    if (currentArtist !== newArtist) {
+      getArtist(newArtist);
+      getTopAlbums(newArtist);
+      getAlbumIds(newArtist);
+      artist.tracks.forEach((track, i) => {
+        artist.tracks[i].audio.pause();
+      })
+    }
+
+  }
   componentWillUnmount() {
     const { artist } = this.props;
     artist.tracks.forEach((track, i) => {
@@ -27,22 +42,7 @@ class ArtistRouter extends Component {
     })
   }
   handleSubPanelClick(e) {
-    const { getArtist, getTopAlbums, getAlbumIds, artist } = this.props
-    let clicked;
-    if (e.target.className === 'sub-panel') {
-      let secondHashIndex = e.target.getAttribute('href').lastIndexOf('/')
-      clicked = e.target.getAttribute('href').slice(secondHashIndex+1);
-    } else if (e.target.nodeName === 'SPAN') {
-      clicked = e.target.textContent;
-    } else if (e.target.className === 'sub-panel__name') {
-      clicked = e.target.querySelectorAll('span')[0].textContent;
-    } else if (e.target.nodeName === 'IMG') {
-      let secondHashIndex = e.target.parentNode.parentNode.getAttribute('href').lastIndexOf('/')
-      clicked = e.target.parentNode.parentNode.getAttribute('href').slice(secondHashIndex+1);
-    }
-    getArtist(clicked)
-    getTopAlbums(clicked)
-    getAlbumIds(clicked);
+    const { artist } = this.props
     artist.tracks.forEach((track, i) => {
       artist.tracks[i].audio.pause();
     })
@@ -84,7 +84,7 @@ class ArtistRouter extends Component {
               {
                 artist.topAlbums.map((album, i) => {
                   const image = album.image[2][Object.keys(album.image[2])[0]];
-                  return <SubPanel img={image} name={album.name} key={i} isAlbum={true}/>
+                  return <SubPanel img={image} key={i} isAlbum={true} name={album.name}/>
                 })
               }
             </div>
